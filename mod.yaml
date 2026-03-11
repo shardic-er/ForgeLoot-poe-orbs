@@ -1,0 +1,40 @@
+name: forge-loot-poe-orbs
+version: 0.1.0
+description: >
+  PoE-style currency orb crafting system for ForgeLoot items.
+  Orbs modify forge items: upgrade rarity, reroll affixes.
+depends:
+  - forge-loot
+tokens:
+  # Orb item entries
+  - ITEM_ORB_TRANSMUTATION
+  - ITEM_ORB_REGAL
+  - ITEM_ORB_EXALTED
+  - ITEM_ORB_ALCHEMY
+  - ITEM_ORB_SCOURING
+  - ITEM_ORB_CHAOS
+  - ITEM_ORB_DIVINE
+  # Display info for orb icons
+  - DISPLAYINFO_ORB_TRANSMUTATION
+  - DISPLAYINFO_ORB_REGAL
+  - DISPLAYINFO_ORB_EXALTED
+  - DISPLAYINFO_ORB_ALCHEMY
+  - DISPLAYINFO_ORB_SCOURING
+  - DISPLAYINFO_ORB_CHAOS
+  - DISPLAYINFO_ORB_DIVINE
+  # Spell 1: instant item-targeting cursor (triggered by item right-click)
+  - SPELL_ORB_TRANSMUTATION
+  - SPELL_ORB_REGAL
+  - SPELL_ORB_EXALTED
+  - SPELL_ORB_ALCHEMY
+  - SPELL_ORB_SCOURING
+  - SPELL_ORB_CHAOS
+  - SPELL_ORB_DIVINE
+  # Spell 2: 1.5s cast bar (server-triggered after validation)
+  - SPELL_ORB_TRANSMUTATION_CAST
+  - SPELL_ORB_REGAL_CAST
+  - SPELL_ORB_EXALTED_CAST
+  - SPELL_ORB_ALCHEMY_CAST
+  - SPELL_ORB_SCOURING_CAST
+  - SPELL_ORB_CHAOS_CAST
+  - SPELL_ORB_DIVINE_CAST
