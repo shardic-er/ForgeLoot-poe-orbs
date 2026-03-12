@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: Forge Orbs
+## Notes: Input dialogs for PoE-style forge orbs
+## Author: WowForge
+## Version: 1.0.0
+
+ForgeOrbs.lua

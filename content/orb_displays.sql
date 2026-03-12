@@ -1,9 +1,24 @@
 -- =============================================================================
 -- ForgeLoot PoE Orbs: ItemDisplayInfo entries
 -- =============================================================================
--- Custom display entries for orb item icons. Uses existing orb textures as
--- placeholders until custom BLP icons are generated.
--- =============================================================================
+
+-- Alteration (blue-green orb)
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_ALTERATION, '', '', '', '',
+    'INV_Orb_Alteration', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
 
 -- Transmutation (white/silver orb)
 INSERT INTO `item_display_info_dbc` (
@@ -18,7 +33,7 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_TRANSMUTATION, '', '', '', '',
-    'INV_Misc_Orb_01', '',
+    'INV_Orb_Transmutation', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
@@ -36,7 +51,7 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_REGAL, '', '', '', '',
-    'INV_Misc_Orb_04', '',
+    'INV_Orb_Regal', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
@@ -54,7 +69,7 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_EXALTED, '', '', '', '',
-    'INV_Misc_Orb_05', '',
+    'INV_Orb_Exalted', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
@@ -72,12 +87,12 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_ALCHEMY, '', '', '', '',
-    'INV_Orb_Arcanite_01', '',
+    'INV_Orb_Alchemy', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
 
--- Scouring (dark/void orb)
+-- Annulment (was Scouring -- token kept, icon changed)
 INSERT INTO `item_display_info_dbc` (
     `id`, `model_name_0`, `model_name_1`,
     `model_texture_0`, `model_texture_1`,
@@ -90,7 +105,7 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_SCOURING, '', '', '', '',
-    'INV_Enchant_VoidSphere', '',
+    'INV_Orb_Annulment', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
@@ -108,12 +123,12 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_CHAOS, '', '', '', '',
-    'INV_Enchant_PrismaticSphere', '',
+    'INV_Orb_Chaos', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
 
--- Divine (radiant/holy orb)
+-- Blessed (was Divine -- token kept, icon changed)
 INSERT INTO `item_display_info_dbc` (
     `id`, `model_name_0`, `model_name_1`,
     `model_texture_0`, `model_texture_1`,
@@ -126,7 +141,209 @@ INSERT INTO `item_display_info_dbc` (
     `item_visual`, `particle_color_id`
 ) VALUES (
     DISPLAYINFO_ORB_DIVINE, '', '', '', '',
-    'INV_Misc_Orb_03', '',
+    'INV_Orb_Blessed', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- =============================================================================
+-- New orb displays
+-- =============================================================================
+
+-- Orb of Scouring (full reset -- uses original scouring icon)
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_FULLSCOUR, '', '', '', '',
+    'INV_Orb_Scouring', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Blacksmith's Whetstone
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_WHETSTONE, '', '', '', '',
+    'INV_Orb_Whetstone', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Armorer's Scrap
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_ARMORER, '', '', '', '',
+    'INV_Orb_Armorer', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Mirror of Kalandra
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_MIRROR, '', '', '', '',
+    'INV_Orb_Mirror', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Ancient Orb
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_ANCIENT, '', '', '', '',
+    'INV_Orb_Ancient', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Divine Orb (transmog -- uses original divine icon)
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_TRANSMOG, '', '', '', '',
+    'INV_Orb_Divine', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Scroll of Identification
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_IDENTIFY, '', '', '', '',
+    'INV_Orb_Identify', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Portal Scroll
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_PORTAL_SCROLL, '', '', '', '',
+    'INV_Orb_Portal', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Awakener's Orb
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_AWAKENER, '', '', '', '',
+    'INV_Orb_Awakener', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Influenced Exalted Orb
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_INFLUENCED, '', '', '', '',
+    'INV_Orb_Influence', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Jeweler's Orb
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_JEWELER, '', '', '', '',
+    'INV_Orb_Jeweler', '',
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );

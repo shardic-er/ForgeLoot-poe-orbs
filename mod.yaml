@@ -1,28 +1,59 @@
 name: forge-loot-poe-orbs
-version: 0.1.0
+version: 0.2.0
 description: >
   PoE-style currency orb crafting system for ForgeLoot items.
-  Orbs modify forge items: upgrade rarity, reroll affixes.
+  Orbs modify forge items: upgrade rarity, reroll affixes, transmog,
+  rename, level adjustment, duplication, and more.
 depends:
   - forge-loot
+  - qol-tweaks
 tokens:
-  # Orb item entries
+  # --- Original orb item entries ---
+  - ITEM_ORB_ALTERATION
   - ITEM_ORB_TRANSMUTATION
   - ITEM_ORB_REGAL
   - ITEM_ORB_EXALTED
   - ITEM_ORB_ALCHEMY
-  - ITEM_ORB_SCOURING
+  - ITEM_ORB_SCOURING          # Renamed to Orb of Annulment (keeps token)
   - ITEM_ORB_CHAOS
-  - ITEM_ORB_DIVINE
-  # Display info for orb icons
+  - ITEM_ORB_DIVINE             # Renamed to Blessed Orb (keeps token)
+  # --- New orb item entries ---
+  - ITEM_ORB_FULLSCOUR           # New Orb of Scouring (full reset)
+  - ITEM_ORB_WHETSTONE           # Blacksmith's Whetstone
+  - ITEM_ORB_ARMORER             # Armorer's Scrap
+  - ITEM_ORB_MIRROR              # Mirror of Kalandra
+  - ITEM_ORB_ANCIENT             # Ancient Orb
+  - ITEM_ORB_TRANSMOG            # Divine Orb (transmog)
+  - ITEM_ORB_IDENTIFY            # Scroll of Identification
+  - ITEM_PORTAL_SCROLL           # Portal Scroll
+  - ITEM_ORB_AWAKENER            # Awakener's Orb
+  - ITEM_ORB_INFLUENCED          # Influenced Exalted Orb
+  - ITEM_ORB_JEWELER             # Jeweler's Orb
+
+  # --- Original display info ---
+  - DISPLAYINFO_ORB_ALTERATION
   - DISPLAYINFO_ORB_TRANSMUTATION
   - DISPLAYINFO_ORB_REGAL
   - DISPLAYINFO_ORB_EXALTED
   - DISPLAYINFO_ORB_ALCHEMY
-  - DISPLAYINFO_ORB_SCOURING
+  - DISPLAYINFO_ORB_SCOURING     # Now shows Annulment icon
   - DISPLAYINFO_ORB_CHAOS
-  - DISPLAYINFO_ORB_DIVINE
-  # Spell 1: instant item-targeting cursor (triggered by item right-click)
+  - DISPLAYINFO_ORB_DIVINE       # Now shows Blessed icon
+  # --- New display info ---
+  - DISPLAYINFO_ORB_FULLSCOUR
+  - DISPLAYINFO_ORB_WHETSTONE
+  - DISPLAYINFO_ORB_ARMORER
+  - DISPLAYINFO_ORB_MIRROR
+  - DISPLAYINFO_ORB_ANCIENT
+  - DISPLAYINFO_ORB_TRANSMOG
+  - DISPLAYINFO_ORB_IDENTIFY
+  - DISPLAYINFO_PORTAL_SCROLL
+  - DISPLAYINFO_ORB_AWAKENER
+  - DISPLAYINFO_ORB_INFLUENCED
+  - DISPLAYINFO_ORB_JEWELER
+
+  # --- Original instant spells (item-targeting cursor) ---
+  - SPELL_ORB_ALTERATION
   - SPELL_ORB_TRANSMUTATION
   - SPELL_ORB_REGAL
   - SPELL_ORB_EXALTED
@@ -30,7 +61,21 @@ tokens:
   - SPELL_ORB_SCOURING
   - SPELL_ORB_CHAOS
   - SPELL_ORB_DIVINE
-  # Spell 2: 1.5s cast bar (server-triggered after validation)
+  # --- New instant spells ---
+  - SPELL_ORB_FULLSCOUR
+  - SPELL_ORB_WHETSTONE
+  - SPELL_ORB_ARMORER
+  - SPELL_ORB_MIRROR
+  - SPELL_ORB_ANCIENT
+  - SPELL_ORB_TRANSMOG
+  - SPELL_ORB_IDENTIFY
+  - SPELL_PORTAL_SCROLL
+  - SPELL_ORB_AWAKENER
+  - SPELL_ORB_INFLUENCED
+  - SPELL_ORB_JEWELER
+
+  # --- Original 1.5s cast spells ---
+  - SPELL_ORB_ALTERATION_CAST
   - SPELL_ORB_TRANSMUTATION_CAST
   - SPELL_ORB_REGAL_CAST
   - SPELL_ORB_EXALTED_CAST
@@ -38,3 +83,69 @@ tokens:
   - SPELL_ORB_SCOURING_CAST
   - SPELL_ORB_CHAOS_CAST
   - SPELL_ORB_DIVINE_CAST
+  # --- New cast spells ---
+  - SPELL_ORB_FULLSCOUR_CAST
+  - SPELL_ORB_WHETSTONE_CAST
+  - SPELL_ORB_ARMORER_CAST
+  - SPELL_ORB_MIRROR_CAST
+  - SPELL_ORB_ANCIENT_CAST
+  - SPELL_ORB_TRANSMOG_CAST
+  - SPELL_ORB_IDENTIFY_CAST
+  - SPELL_PORTAL_SCROLL_CAST
+  - SPELL_ORB_AWAKENER_CAST
+  - SPELL_ORB_INFLUENCED_CAST
+  - SPELL_ORB_JEWELER_CAST
+
+  # --- Influence enchantments (cosmetic tooltip text for Influenced Exalted Orb) ---
+  - ENCHANTMENT_INFLUENCE_AGI
+  - ENCHANTMENT_INFLUENCE_STR
+  - ENCHANTMENT_INFLUENCE_INT
+  - ENCHANTMENT_INFLUENCE_SPI
+  - ENCHANTMENT_INFLUENCE_STA
+  - ENCHANTMENT_INFLUENCE_DEF
+  - ENCHANTMENT_INFLUENCE_DODGE
+  - ENCHANTMENT_INFLUENCE_PARRY
+  - ENCHANTMENT_INFLUENCE_BLOCK_RTG
+  - ENCHANTMENT_INFLUENCE_HIT
+  - ENCHANTMENT_INFLUENCE_CRIT
+  - ENCHANTMENT_INFLUENCE_HASTE
+  - ENCHANTMENT_INFLUENCE_EXPERTISE
+  - ENCHANTMENT_INFLUENCE_AP
+  - ENCHANTMENT_INFLUENCE_MP5
+  - ENCHANTMENT_INFLUENCE_ARMOR_PEN
+  - ENCHANTMENT_INFLUENCE_SP
+  - ENCHANTMENT_INFLUENCE_BLOCK_VAL
+
+  # --- Forge - Smithing profession ---
+  - SPELL_ORB_RECIPES_BASE
+
+  # --- Combine recipes (crafting spells) ---
+  - SPELL_RECIPE_IDENTIFY_FROM_TRANSMUTE
+  - SPELL_RECIPE_PORTAL_FROM_TRANSMUTE
+  - SPELL_RECIPE_ALTER_FROM_TRANSMUTE
+  - SPELL_RECIPE_SCRAP_FROM_TRANSMUTE
+  - SPELL_RECIPE_WHETSTONE_FROM_SCRAP
+  - SPELL_RECIPE_EXALT_FROM_SCOURING
+  - SPELL_RECIPE_DIVINE_FROM_SCOURING
+  - SPELL_RECIPE_ANCIENT_FROM_JEWELER
+  - SPELL_RECIPE_MIRROR_FROM_SCOURING
+
+  # --- SkillLineAbility entries ---
+  - SLA_ORB_RECIPES_BASE
+  - SLA_RECIPE_IDENTIFY_FROM_TRANSMUTE
+  - SLA_RECIPE_PORTAL_FROM_TRANSMUTE
+  - SLA_RECIPE_ALTER_FROM_TRANSMUTE
+  - SLA_RECIPE_SCRAP_FROM_TRANSMUTE
+  - SLA_RECIPE_WHETSTONE_FROM_SCRAP
+  - SLA_RECIPE_EXALT_FROM_SCOURING
+  - SLA_RECIPE_DIVINE_FROM_SCOURING
+  - SLA_RECIPE_ANCIENT_FROM_JEWELER
+  - SLA_RECIPE_MIRROR_FROM_SCOURING
+
+  # --- Loot pools (tiered) ---
+  - LOOT_FORGE_POOL_COMMON
+  - LOOT_FORGE_POOL_UNCOMMON
+  - LOOT_FORGE_POOL_RARE
+  - LOOT_FORGE_POOL_EPIC
+  - LOOT_FORGE_POOL_LEGENDARY
+  - LOOT_FORGE_POOL_ARTIFACT
