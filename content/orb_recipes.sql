@@ -9,7 +9,7 @@ INSERT INTO `skill_line_dbc` (
     `spell_icon_id`, `alternate_verb`, `can_link`
 ) VALUES (
     903, 9, 0,
-    'Forge - Smithing', 'Convert currency orbs into other orbs.',
+    'Smithing', 'Convert currency orbs into other orbs.',
     3830, 'Combine', 1
 );
 
@@ -31,7 +31,7 @@ INSERT INTO spell_dbc (
     Effect1, EffectImplicitTargetA1,
     SpellIconID
 ) VALUES (
-    SPELL_ORB_RECIPES_BASE, 'Forge - Smithing',
+    SPELL_ORB_RECIPES_BASE, 'Smithing',
     'Convert currency orbs into other orbs.',
     16842768, 1, 1,
     47, 1,
