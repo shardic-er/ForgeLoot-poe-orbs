@@ -8,27 +8,27 @@
 -- =============================================================================
 
 -- =============================================================================
--- T1: Common (all 16 orbs, total weight 1521)
+-- T1: Common (all 16 orbs, total weight 2289)
 -- =============================================================================
 INSERT INTO reference_loot_template
     (Entry, Item, Reference, Chance, QuestRequired, LootMode, GroupId, MinCount, MaxCount, Comment)
 VALUES
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ALTERATION,    0, 16.83, 0, 1, 1, 1, 1, 'Orb of Alteration'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ARMORER,       0, 16.83, 0, 1, 1, 1, 1, 'Armorer''s Scrap'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_TRANSMUTATION, 0, 16.83, 0, 1, 1, 1, 1, 'Orb of Transmutation'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_JEWELER,       0,  8.42, 0, 1, 1, 1, 1, 'Jeweler''s Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_WHETSTONE,     0,  8.42, 0, 1, 1, 1, 1, 'Blacksmith''s Whetstone'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_REGAL,         0,  8.42, 0, 1, 1, 1, 1, 'Regal Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_CHAOS,         0,  4.21, 0, 1, 1, 1, 1, 'Chaos Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ALCHEMY,       0,  4.21, 0, 1, 1, 1, 1, 'Orb of Alchemy'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_FULLSCOUR,     0,  4.21, 0, 1, 1, 1, 1, 'Orb of Scouring'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_SCOURING,      0,  4.21, 0, 1, 1, 1, 1, 'Orb of Annulment'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_EXALTED,       0,  2.10, 0, 1, 1, 1, 1, 'Exalted Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_DIVINE,        0,  2.10, 0, 1, 1, 1, 1, 'Blessed Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_TRANSMOG,      0,  2.10, 0, 1, 1, 1, 1, 'Divine Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_MIRROR,        0,  0.53, 0, 1, 1, 1, 1, 'Mirror of Kalandra'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ANCIENT,       0,  0.53, 0, 1, 1, 1, 1, 'Ancient Orb'),
-    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_AWAKENER,      0,  0.07, 0, 1, 1, 1, 1, 'Awakener''s Orb');
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ALTERATION,    0, 22.37, 0, 1, 1, 1, 1, 'Orb of Alteration'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ARMORER,       0, 22.37, 0, 1, 1, 1, 1, 'Armorer''s Scrap'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_TRANSMUTATION, 0, 22.37, 0, 1, 1, 1, 1, 'Orb of Transmutation'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_JEWELER,       0,  5.59, 0, 1, 1, 1, 1, 'Jeweler''s Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_WHETSTONE,     0,  5.59, 0, 1, 1, 1, 1, 'Blacksmith''s Whetstone'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_REGAL,         0,  5.59, 0, 1, 1, 1, 1, 'Regal Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_CHAOS,         0,  2.80, 0, 1, 1, 1, 1, 'Chaos Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ALCHEMY,       0,  2.80, 0, 1, 1, 1, 1, 'Orb of Alchemy'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_FULLSCOUR,     0,  2.80, 0, 1, 1, 1, 1, 'Orb of Scouring'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_SCOURING,      0,  2.80, 0, 1, 1, 1, 1, 'Orb of Annulment'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_EXALTED,       0,  1.40, 0, 1, 1, 1, 1, 'Exalted Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_DIVINE,        0,  1.40, 0, 1, 1, 1, 1, 'Blessed Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_TRANSMOG,      0,  1.40, 0, 1, 1, 1, 1, 'Divine Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_MIRROR,        0,  0.35, 0, 1, 1, 1, 1, 'Mirror of Kalandra'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ANCIENT,       0,  0.35, 0, 1, 1, 1, 1, 'Ancient Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_AWAKENER,      0,  0.04, 0, 1, 1, 1, 1, 'Awakener''s Orb');
 
 -- =============================================================================
 -- T2: Uncommon (13 orbs, total weight 753)

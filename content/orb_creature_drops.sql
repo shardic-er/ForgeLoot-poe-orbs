@@ -2,6 +2,9 @@
 -- Orb drops for all creatures based on rank.
 -- 7488 total loot tables across 3 pools.
 
+-- Cleanup: remove all previous orb drop rows
+DELETE FROM creature_loot_template WHERE Comment LIKE 'Forge Orb%';
+
 -- LOOT_FORGE_POOL_COMMON: Normal (rank 0) (4487 loot tables)
 INSERT INTO creature_loot_template
     (Entry, Item, Reference, Chance, QuestRequired, LootMode, GroupId, MinCount, MaxCount, Comment)
