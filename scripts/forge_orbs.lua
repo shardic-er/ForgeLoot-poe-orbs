@@ -1,4 +1,4 @@
--- @load-order 20
+haos orb-- @load-order 20
 -- ForgeLoot PoE Orbs: Currency crafting system
 -- Depends on: forge_balance.lua, forge_commands.lua, forge_names.lua (from forge-loot)
 --
@@ -95,7 +95,7 @@ local ORB_DEFS = {
         castSpell = SPELL_ORB_ALTERATION_CAST,
         name = "Orb of Alteration",
         canApply = function(state)
-            return state.quality == 2 and state.suffix_name ~= nil
+            return state.quality == 2 and state.suffix1_name ~= nil
         end,
     },
     transmutation = {
@@ -122,7 +122,7 @@ local ORB_DEFS = {
         castSpell = SPELL_ORB_EXALTED_CAST,
         name = "Exalted Orb",
         canApply = function(state)
-            return state.quality == 3
+            return state.prefix1_stat_id ~= nil and state.prefix2_stat_id == nil
         end,
     },
     alchemy = {
@@ -203,7 +203,7 @@ local ORB_DEFS = {
         castSpell = SPELL_ORB_MIRROR_CAST,
         name = "Mirror of Kalandra",
         canApply = function(state)
-            return state.prefix3_label == nil  -- cannot mirror an already-locked item
+            return state.prefix3_word == nil  -- cannot mirror an already-locked item
         end,
     },
     ancient = {
@@ -263,7 +263,7 @@ local ORB_DEFS = {
         name = "Influenced Exalted Orb",
         needsInfluence = true,  -- reads influence from orb enchantment
         canApply = function(state)
-            return state.quality == 3
+            return state.prefix1_stat_id ~= nil and state.prefix2_stat_id == nil
         end,
     },
     jeweler = {
@@ -278,6 +278,15 @@ local ORB_DEFS = {
             return true
         end,
     },
+    vaal = {
+        entry = ITEM_ORB_VAAL,
+        spell = SPELL_ORB_VAAL,
+        castSpell = SPELL_ORB_VAAL_CAST,
+        name = "Vaal Orb",
+        canApply = function(state)
+            return state.quality >= 1
+        end,
+    },
 }
 
 FORGE.ORBS.DEFS = ORB_DEFS
@@ -288,6 +297,27 @@ local CAST_SPELL_TO_ORB = {} -- cast spell ID -> orb type name
 for name, def in pairs(ORB_DEFS) do
     ENTRY_TO_ORB[def.entry] = name
     CAST_SPELL_TO_ORB[def.castSpell] = name
+end
+
+-- =============================================================================
+-- Vaal Aura Sync ("No Vaals" buff -- present while player has Vaal Orbs)
+-- =============================================================================
+
+local function syncVaalAura(player)
+    local count = player:GetItemCount(ITEM_ORB_VAAL)
+    local hasSuccess = player:HasAura(SPELL_VAAL_SUCCESS_AURA)
+    local hasFail = player:HasAura(SPELL_VAAL_FAIL_AURA)
+
+    -- "No Vaals" is suppressed while Big Vaals or Poof is active
+    if count > 0 and not hasSuccess and not hasFail then
+        if not player:HasAura(SPELL_VAAL_AURA) then
+            player:AddAura(SPELL_VAAL_AURA, player)
+        end
+    else
+        if player:HasAura(SPELL_VAAL_AURA) then
+            player:RemoveAura(SPELL_VAAL_AURA)
+        end
+    end
 end
 
 -- =============================================================================
@@ -324,10 +354,11 @@ end
 local function readForgeItemState(entry)
     local q = WorldDBQuery(string.format(
         "SELECT quality, mob_level, item_level, weapon_type, slot_name, " ..
-        "armor_class, suffix_name, prefix1_stat_id, prefix2_stat_id, " ..
+        "armor_class, suffix1_name, suffix2_name, " ..
+        "prefix1_stat_id, prefix2_stat_id, prefix3_stat_id, prefix3_word, " ..
         "item_class, item_subclass, inv_type, name, attack_speed, " ..
         "display_info_id, display_source_entry, dmg_min, dmg_max, " ..
-        "armor, block, socket_count, prefix3_label, item_level_override, " ..
+        "armor, block, socket_count, item_level_override, " ..
         "name_override " ..
         "FROM virtual_item_instance WHERE entry = %d", entry
     ))
@@ -341,24 +372,26 @@ local function readForgeItemState(entry)
         weapon_type = nullStr(q, 3),
         slot_name = nullStr(q, 4),
         armor_class = nullStr(q, 5),
-        suffix_name = nullStr(q, 6),
-        prefix1_stat_id = nullUInt(q, 7),
-        prefix2_stat_id = nullUInt(q, 8),
-        item_class = q:GetUInt32(9),
-        item_subclass = q:GetUInt32(10),
-        inv_type = q:GetUInt32(11),
-        name = q:GetString(12),
-        attack_speed = q:GetUInt32(13),
-        display_info_id = q:GetUInt32(14),
-        display_source_entry = q:GetUInt32(15),
-        dmg_min = q:GetFloat(16),
-        dmg_max = q:GetFloat(17),
-        armor_value = q:GetUInt32(18),
-        block_value = q:GetUInt32(19),
-        socket_count = q:GetUInt32(20),
-        prefix3_label = nullStr(q, 21),
-        item_level_override = nullUInt(q, 22),
-        name_override = nullStr(q, 23),
+        suffix1_name = nullStr(q, 6),
+        suffix2_name = nullStr(q, 7),
+        prefix1_stat_id = nullUInt(q, 8),
+        prefix2_stat_id = nullUInt(q, 9),
+        prefix3_stat_id = nullUInt(q, 10),
+        prefix3_word = nullStr(q, 11),
+        item_class = q:GetUInt32(12),
+        item_subclass = q:GetUInt32(13),
+        inv_type = q:GetUInt32(14),
+        name = q:GetString(15),
+        attack_speed = q:GetUInt32(16),
+        display_info_id = q:GetUInt32(17),
+        display_source_entry = q:GetUInt32(18),
+        dmg_min = q:GetFloat(19),
+        dmg_max = q:GetFloat(20),
+        armor_value = q:GetUInt32(21),
+        block_value = q:GetUInt32(22),
+        socket_count = q:GetUInt32(23),
+        item_level_override = nullUInt(q, 24),
+        name_override = nullStr(q, 25),
     }
 end
 
@@ -380,6 +413,7 @@ end
 local function recreateItem(player, oldEntry, state)
     local level = state.mob_level
     local quality = state.quality
+    local displayQuality = state.display_quality or quality
     local wtype = nil
 
     if state.weapon_type then
@@ -392,14 +426,15 @@ local function recreateItem(player, oldEntry, state)
     local persistedIlvlOverride = state.item_level_override
 
     -- Get suffix data
-    local suffix = state.suffix_name and FORGE.SUFFIXES[state.suffix_name] or nil
+    local suffix1 = state.suffix1_name and FORGE.SUFFIXES[state.suffix1_name] or nil
+    local suffix2 = state.suffix2_name and FORGE.SUFFIXES[state.suffix2_name] or nil
 
     -- Regenerate stats from scratch (pass computed ilvl including whetstone/armorer bonus)
     local weaponSize = wtype and getWeaponSize(wtype) or nil
     local stats = FORGE.generateItemStats(
         level, quality, state.slot_name, weaponSize,
-        suffix, state.prefix1_stat_id, state.prefix2_stat_id,
-        ilvlBonus > 0 and itemLevel or nil
+        suffix1, state.prefix1_stat_id, state.prefix2_stat_id,
+        ilvlBonus > 0 and itemLevel or nil, suffix2
     )
 
     -- Recalculate weapon damage
@@ -431,7 +466,7 @@ local function recreateItem(player, oldEntry, state)
         if dmgMax < dmgMin then dmgMax = dmgMin end
 
         -- Caster weapon affix
-        if quality >= 2 and FORGE.isCasterWeapon(state.weapon_type, suffix) then
+        if quality >= 2 and FORGE.isCasterWeapon(state.weapon_type, suffix1) then
             local actualDps = (dmgMin + dmgMax) / 2.0 / (speed / 1000.0)
             local sacrificedDps = actualDps / 3.0
             dmgMin = math.floor(dmgMin * 2 / 3)
@@ -463,14 +498,15 @@ local function recreateItem(player, oldEntry, state)
             nouns = FORGE.getNouns(state.slot_name, state.armor_class)
         end
         itemName = FORGE.randomName(
-            nouns, quality, state.suffix_name,
-            state.prefix1_stat_id, state.prefix2_stat_id
+            nouns, quality, state.suffix1_name,
+            state.prefix1_stat_id, state.prefix2_stat_id,
+            state.suffix2_name
         )
     end
 
     -- Prepend mirror/corruption prefix if present
-    if state.prefix3_label then
-        itemName = state.prefix3_label .. " " .. itemName
+    if state.prefix3_word then
+        itemName = state.prefix3_word .. " " .. itemName
     end
 
     -- Build stat array
@@ -488,7 +524,7 @@ local function recreateItem(player, oldEntry, state)
         itemSubClass = state.item_subclass,
         invType = invType,
         name = itemName,
-        quality = quality,
+        quality = displayQuality,
         requiredLevel = level,
         itemLevel = itemLevel,
         displayInfoId = displayInfoId,
@@ -512,16 +548,20 @@ local function recreateItem(player, oldEntry, state)
     WorldDBExecute(string.format(
         "UPDATE virtual_item_instance SET " ..
         "weapon_type=%s, slot_name=%s, armor_class=%s, " ..
-        "suffix_name=%s, prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
-        "prefix3_label=%s, item_level_override=%s, name_override=%s, mob_level=%d " ..
+        "suffix1_name=%s, suffix2_name=%s, " ..
+        "prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
+        "prefix3_stat_id=%s, prefix3_word=%s, " ..
+        "item_level_override=%s, name_override=%s, mob_level=%d " ..
         "WHERE entry=%d",
         state.weapon_type and ("'" .. state.weapon_type .. "'") or "NULL",
         state.slot_name and ("'" .. state.slot_name .. "'") or "NULL",
         state.armor_class and ("'" .. state.armor_class .. "'") or "NULL",
-        state.suffix_name and ("'" .. state.suffix_name:gsub("'", "''") .. "'") or "NULL",
+        state.suffix1_name and ("'" .. state.suffix1_name:gsub("'", "''") .. "'") or "NULL",
+        state.suffix2_name and ("'" .. state.suffix2_name:gsub("'", "''") .. "'") or "NULL",
         state.prefix1_stat_id and tostring(state.prefix1_stat_id) or "NULL",
         state.prefix2_stat_id and tostring(state.prefix2_stat_id) or "NULL",
-        state.prefix3_label and ("'" .. state.prefix3_label:gsub("'", "''") .. "'") or "NULL",
+        state.prefix3_stat_id and tostring(state.prefix3_stat_id) or "NULL",
+        state.prefix3_word and ("'" .. state.prefix3_word:gsub("'", "''") .. "'") or "NULL",
         persistedIlvlOverride and tostring(persistedIlvlOverride) or "NULL",
         state.name_override and ("'" .. state.name_override:gsub("'", "''") .. "'") or "NULL",
         level,
@@ -574,14 +614,14 @@ end
 
 local function applyAlteration(player, state)
     local suffixName, _ = FORGE.rollSuffix(2, state.slot_name, state.armor_class, state.weapon_type)
-    state.suffix_name = suffixName
+    state.suffix1_name = suffixName
     return recreateItem(player, state.entry, state)
 end
 
 local function applyTransmutation(player, state)
     state.quality = 2
     local suffixName, _ = FORGE.rollSuffix(2, state.slot_name, state.armor_class, state.weapon_type)
-    state.suffix_name = suffixName
+    state.suffix1_name = suffixName
     return recreateItem(player, state.entry, state)
 end
 
@@ -603,7 +643,8 @@ end
 local function applyAlchemy(player, state)
     state.quality = 4
     local suffixName, _ = FORGE.rollSuffix(4, state.slot_name, state.armor_class, state.weapon_type)
-    state.suffix_name = suffixName
+    state.suffix1_name = suffixName
+    state.suffix2_name = nil
     local p1stat, _ = FORGE.rollPrefix(FORGE.PREFIX1_TABLE)
     state.prefix1_stat_id = p1stat
     local p2stat, _ = FORGE.rollPrefix(FORGE.PREFIX2_TABLE)
@@ -611,18 +652,28 @@ local function applyAlchemy(player, state)
     return recreateItem(player, state.entry, state)
 end
 
--- Annulment (was Scouring): reduce rarity by 1
+-- Annulment (was Scouring): strip one affix by priority: prefix2 > prefix1 > suffix2 > suffix1
+-- Quality is derived from core affixes (suffix1, prefix1, prefix2). suffix2 is a bonus
+-- that does not contribute to quality tier, so stripping it leaves quality unchanged.
+local function computeQualityFromAffixes(state)
+    local q = 1
+    if state.suffix1_name then q = q + 1 end
+    if state.prefix1_stat_id then q = q + 1 end
+    if state.prefix2_stat_id then q = q + 1 end
+    return q
+end
+
 local function applyAnnulment(player, state)
-    if state.quality == 4 then
-        state.quality = 3
+    if state.prefix2_stat_id then
         state.prefix2_stat_id = nil
-    elseif state.quality == 3 then
-        state.quality = 2
+    elseif state.prefix1_stat_id then
         state.prefix1_stat_id = nil
-    elseif state.quality == 2 then
-        state.quality = 1
-        state.suffix_name = nil
+    elseif state.suffix2_name then
+        state.suffix2_name = nil
+    elseif state.suffix1_name then
+        state.suffix1_name = nil
     end
+    state.quality = computeQualityFromAffixes(state)
     return recreateItem(player, state.entry, state)
 end
 
@@ -630,7 +681,7 @@ local function applyChaos(player, state)
     local quality = state.quality
     if quality >= 2 then
         local suffixName, _ = FORGE.rollSuffix(quality, state.slot_name, state.armor_class, state.weapon_type)
-        state.suffix_name = suffixName
+        state.suffix1_name = suffixName
     end
     if quality >= 3 then
         local p1stat, _ = FORGE.rollPrefix(FORGE.PREFIX1_TABLE)
@@ -639,6 +690,23 @@ local function applyChaos(player, state)
     if quality >= 4 then
         local p2stat, _ = FORGE.rollPrefix(FORGE.PREFIX2_TABLE)
         state.prefix2_stat_id = p2stat
+    end
+    -- Double suffix: 20% for epic, 10% for rare
+    -- Dual suffix trades the highest prefix for a second suffix:
+    --   Epic: loses prefix2, keeps prefix1 -> 1p/2s epic (exaltable)
+    --   Rare: loses prefix1 -> 0p/2s uncommon (regal -> exalt path)
+    local dualChance = (quality >= 4 and 20) or (quality >= 3 and 10) or 0
+    if dualChance > 0 and math.random(100) <= dualChance then
+        local s2, _ = FORGE.rollSuffix(quality, state.slot_name, state.armor_class, state.weapon_type)
+        state.suffix2_name = s2
+        if quality >= 4 then
+            state.prefix2_stat_id = nil
+        else
+            state.prefix1_stat_id = nil
+            state.quality = 2
+        end
+    else
+        state.suffix2_name = nil
     end
     return recreateItem(player, state.entry, state)
 end
@@ -656,7 +724,8 @@ end
 -- Full Scouring: reset to common
 local function applyFullScour(player, state)
     state.quality = 1
-    state.suffix_name = nil
+    state.suffix1_name = nil
+    state.suffix2_name = nil
     state.prefix1_stat_id = nil
     state.prefix2_stat_id = nil
     return recreateItem(player, state.entry, state)
@@ -734,19 +803,23 @@ local function applyMirror(player, state)
         return nil
     end
 
-    -- Copy affix tracking + set prefix3_label (marks item as locked)
+    -- Copy affix tracking + set prefix3_word (marks item as locked)
     WorldDBExecute(string.format(
         "UPDATE virtual_item_instance SET " ..
         "weapon_type=%s, slot_name=%s, armor_class=%s, " ..
-        "suffix_name=%s, prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
-        "prefix3_label='%s', item_level_override=%s, name_override=%s, mob_level=%d " ..
+        "suffix1_name=%s, suffix2_name=%s, " ..
+        "prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
+        "prefix3_stat_id=%s, prefix3_word='%s', " ..
+        "item_level_override=%s, name_override=%s, mob_level=%d " ..
         "WHERE entry=%d",
         state.weapon_type and ("'" .. state.weapon_type .. "'") or "NULL",
         state.slot_name and ("'" .. state.slot_name .. "'") or "NULL",
         state.armor_class and ("'" .. state.armor_class .. "'") or "NULL",
-        state.suffix_name and ("'" .. state.suffix_name:gsub("'", "''") .. "'") or "NULL",
+        state.suffix1_name and ("'" .. state.suffix1_name:gsub("'", "''") .. "'") or "NULL",
+        state.suffix2_name and ("'" .. state.suffix2_name:gsub("'", "''") .. "'") or "NULL",
         state.prefix1_stat_id and tostring(state.prefix1_stat_id) or "NULL",
         state.prefix2_stat_id and tostring(state.prefix2_stat_id) or "NULL",
+        state.prefix3_stat_id and tostring(state.prefix3_stat_id) or "NULL",
         mirrorPrefix:gsub("'", "''"),
         state.item_level_override and tostring(state.item_level_override) or "NULL",
         state.name_override and ("'" .. state.name_override:gsub("'", "''") .. "'") or "NULL",
@@ -931,6 +1004,89 @@ local function applyJeweler(player, state)
     return recreateItem(player, state.entry, state)
 end
 
+-- Vaal corruption prefixes (randomly selected, like Mirror prefixes)
+local VAAL_PREFIXES = { "Corrupted", "Vaal", "Nightmarish" }
+
+-- Vaal: corrupt an item with three independent 33% rolls:
+--   1) Poof: item is destroyed
+--   2) Chaos: reroll affixes (same as Chaos Orb)
+--   3) +20 ilevels: adds 20 to item_level_override (no cap, stacks)
+-- After rolls, item is locked (prefix3_word) and set to Legendary quality.
+-- Poof aura: if poof triggered (item gone).
+-- Big Vaals aura: +20 hit AND item already had >=20 ilevel override AND no poof.
+local function applyVaal(player, state)
+    -- Three independent 33% rolls
+    local rollPoof = math.random(100) <= 33
+    local rollChaos = math.random(100) <= 33
+    local rollIlevel = math.random(100) <= 33
+
+    -- Remove "No Vaals" before applying outcome aura
+    if player:HasAura(SPELL_VAAL_AURA) then
+        player:RemoveAura(SPELL_VAAL_AURA)
+    end
+
+    -- Apply chaos reroll (same logic as Chaos Orb)
+    if rollChaos then
+        local quality = state.quality
+        if quality >= 2 then
+            local suffixName, _ = FORGE.rollSuffix(quality, state.slot_name, state.armor_class, state.weapon_type)
+            state.suffix1_name = suffixName
+        end
+        if quality >= 3 then
+            local p1stat, _ = FORGE.rollPrefix(FORGE.PREFIX1_TABLE)
+            state.prefix1_stat_id = p1stat
+        end
+        if quality >= 4 then
+            local p2stat, _ = FORGE.rollPrefix(FORGE.PREFIX2_TABLE)
+            state.prefix2_stat_id = p2stat
+        end
+    end
+
+    -- Apply +20 ilevel bonus
+    if rollIlevel then
+        state.item_level_override = (state.item_level_override or 0) + 20
+    end
+
+    -- Lock the item: set corruption prefix and Legendary display quality
+    state.prefix3_word = VAAL_PREFIXES[math.random(#VAAL_PREFIXES)]
+    state.display_quality = 5
+
+    -- Poof: skip recreation (recreateItem destroys the old item, so skipping = item gone)
+    if rollPoof then
+        player:RemoveItem(state.entry, 1)
+        DestroyForgeItem(state.entry)
+        player:SendBroadcastMessage("|cffff0000Poof!|r")
+        if player:HasAura(SPELL_VAAL_SUCCESS_AURA) then
+            player:RemoveAura(SPELL_VAAL_SUCCESS_AURA)
+        end
+        player:AddAura(SPELL_VAAL_FAIL_AURA, player)
+        return 1, nil, nil
+    end
+
+    local newEntry, newName, newStats = recreateItem(player, state.entry, state)
+    if not newEntry then return nil end
+
+    -- Build outcome message
+    local parts = {}
+    if rollChaos then parts[#parts + 1] = "affixes rerolled" end
+    if rollIlevel then parts[#parts + 1] = "+20 item levels" end
+    if #parts == 0 then parts[#parts + 1] = "locked" end
+    local outcomeStr = table.concat(parts, ", ")
+    player:SendBroadcastMessage(string.format(
+        "|cffff8000Vaal Orb|r: %s (%s)", newName or "item", outcomeStr
+    ))
+
+    -- Big Vaals: applied when +20 ilevel roll hits (and no poof)
+    if rollIlevel then
+        if player:HasAura(SPELL_VAAL_FAIL_AURA) then
+            player:RemoveAura(SPELL_VAAL_FAIL_AURA)
+        end
+        player:AddAura(SPELL_VAAL_SUCCESS_AURA, player)
+    end
+
+    return newEntry, newName, newStats
+end
+
 local ORB_APPLY = {
     alteration = applyAlteration,
     transmutation = applyTransmutation,
@@ -951,6 +1107,7 @@ local ORB_APPLY = {
     awakener = applyAwakener,
     influenced = applyInfluenced,
     jeweler = applyJeweler,
+    vaal = applyVaal,
 }
 
 -- =============================================================================
@@ -958,6 +1115,9 @@ local ORB_APPLY = {
 -- =============================================================================
 
 local function onOrbUse(event, player, item, target)
+    -- Block use while already casting (prevents interrupting a pending orb cast)
+    if player:IsCasting() then return false end
+
     local orbEntry = item:GetEntry()
     local orbType = ENTRY_TO_ORB[orbEntry]
     if not orbType then return false end
@@ -1109,7 +1269,7 @@ local function onOrbUse(event, player, item, target)
     end
 
     -- Locked items (mirrored/corrupted) cannot be modified except by transmog and identify
-    if state.prefix3_label then
+    if state.prefix3_word then
         player:SendBroadcastMessage("This item is locked and cannot be modified.")
         return false
     end
@@ -1235,6 +1395,7 @@ local function onOrbCastComplete(event, spell)
             local newEntry, newName = applyFn(player, nil, pending)
             if newEntry and newEntry > 0 then
                 player:RemoveItem(dbOrbItemEntry, 1)
+                syncVaalAura(player)
                 local q = 0
                 if newEntry > 1 then
                     local st = readForgeItemState(newEntry)
@@ -1258,6 +1419,7 @@ local function onOrbCastComplete(event, spell)
             local newEntry, newName = applyFn(player, state, pending)
             if newEntry then
                 player:RemoveItem(dbOrbItemEntry, 1)
+                syncVaalAura(player)
                 local QUALITY_COLORS = {
                     [1] = "|cffffffff", [2] = "|cff1eff00", [3] = "|cff0070dd", [4] = "|cffa335ee", [5] = "|cffff8000",
                 }
@@ -1296,6 +1458,7 @@ local function onOrbCastComplete(event, spell)
         local result = applyFn(player, nil, pending)
         if result then
             player:RemoveItem(pending.orbItemEntry, 1)
+            syncVaalAura(player)
         end
         return
     end
@@ -1314,7 +1477,7 @@ local function onOrbCastComplete(event, spell)
     end
 
     -- Re-check locked status at cast completion (transmog/identify handled separately)
-    if state.prefix3_label then
+    if state.prefix3_word then
         player:SendBroadcastMessage("This item is locked and cannot be modified.")
         return
     end
@@ -1339,9 +1502,10 @@ local function onOrbCastComplete(event, spell)
 
     -- Consume one orb from the player's inventory
     player:RemoveItem(pending.orbItemEntry, 1)
+    syncVaalAura(player)
 
-    -- Report result (skip for portal, awakener which handle their own messages)
-    if orbType ~= "portal" and orbType ~= "awakener" and orbType ~= "influenced" then
+    -- Report result (skip for portal, awakener, influenced, vaal which handle their own messages)
+    if orbType ~= "portal" and orbType ~= "awakener" and orbType ~= "influenced" and orbType ~= "vaal" then
         local QUALITY_COLORS = {
             [1] = "|cffffffff", [2] = "|cff1eff00", [3] = "|cff0070dd", [4] = "|cffa335ee", [5] = "|cffff8000",
         }
@@ -1472,6 +1636,11 @@ end
 -- Addon message handler for Scroll of Identification + Divine Orb confirmation (event 30 = ADDON_MESSAGE)
 RegisterServerEvent(30, onAddonMessage)
 
+-- Sync "No Vaals" aura on login (event 3 = PLAYER_EVENT_ON_LOGIN)
+RegisterPlayerEvent(3, function(event, player)
+    syncVaalAura(player)
+end)
+
 -- Clean up pending state on logout
 RegisterPlayerEvent(4, function(event, player)
     local guid = player:GetGUIDLow()
@@ -1479,6 +1648,13 @@ RegisterPlayerEvent(4, function(event, player)
     WorldDBExecute(string.format(
         "DELETE FROM orb_pending WHERE player_guid = %d", guid
     ))
+end)
+
+-- Sync "No Vaals" aura when looting a Vaal Orb (event 29 = PLAYER_EVENT_ON_LOOT_ITEM)
+RegisterPlayerEvent(29, function(event, player, item, count)
+    if item and item:GetEntry() == ITEM_ORB_VAAL then
+        syncVaalAura(player)
+    end
 end)
 
 local orbCount = 0

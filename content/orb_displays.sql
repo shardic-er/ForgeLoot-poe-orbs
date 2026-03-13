@@ -347,3 +347,39 @@ INSERT INTO `item_display_info_dbc` (
     0, 0, 0, 0, 0, 0, 0, 0,
     '', '', '', '', '', '', '', '', 0, 0
 );
+
+-- Vaal Orb
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_VAAL, '', '', '', '',
+    'INV_Orb_Vaal', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);
+
+-- Smithing Orb Crate (24-slot engineering bag for orbs)
+INSERT INTO `item_display_info_dbc` (
+    `id`, `model_name_0`, `model_name_1`,
+    `model_texture_0`, `model_texture_1`,
+    `inventory_icon_0`, `inventory_icon_1`,
+    `geoset_group_0`, `geoset_group_1`, `geoset_group_2`,
+    `flags`, `spell_visual_id`, `group_sound_index`,
+    `helmet_geoset_vis_0`, `helmet_geoset_vis_1`,
+    `texture_0`, `texture_1`, `texture_2`, `texture_3`,
+    `texture_4`, `texture_5`, `texture_6`, `texture_7`,
+    `item_visual`, `particle_color_id`
+) VALUES (
+    DISPLAYINFO_ORB_CRATE, '', '', '', '',
+    'INV_Box_04', '',
+    0, 0, 0, 0, 0, 0, 0, 0,
+    '', '', '', '', '', '', '', '', 0, 0
+);

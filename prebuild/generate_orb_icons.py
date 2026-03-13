@@ -52,6 +52,7 @@ ORB_ICONS = {
     'Scroll_of_Wisdom.png':       'INV_Orb_Identify',
     'Portal_Scroll.png':          'INV_Orb_Portal',
     "Jeweller's_Orb.png":         'INV_Orb_Jeweler',
+    'Vaal_Orb.png':               'INV_Orb_Vaal',
 }
 
 

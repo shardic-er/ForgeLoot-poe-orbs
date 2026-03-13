@@ -28,6 +28,7 @@ VALUES
     (LOOT_FORGE_POOL_COMMON, ITEM_ORB_TRANSMOG,      0,  1.40, 0, 1, 1, 1, 1, 'Divine Orb'),
     (LOOT_FORGE_POOL_COMMON, ITEM_ORB_MIRROR,        0,  0.35, 0, 1, 1, 1, 1, 'Mirror of Kalandra'),
     (LOOT_FORGE_POOL_COMMON, ITEM_ORB_ANCIENT,       0,  0.35, 0, 1, 1, 1, 1, 'Ancient Orb'),
+    (LOOT_FORGE_POOL_COMMON, ITEM_ORB_VAAL,           0,  2.80, 0, 1, 1, 1, 1, 'Vaal Orb'),
     (LOOT_FORGE_POOL_COMMON, ITEM_ORB_AWAKENER,      0,  0.04, 0, 1, 1, 1, 1, 'Awakener''s Orb');
 
 -- =============================================================================
@@ -48,6 +49,7 @@ VALUES
     (LOOT_FORGE_POOL_UNCOMMON, ITEM_ORB_TRANSMOG,      0,  4.25, 0, 1, 1, 1, 1, 'Divine Orb'),
     (LOOT_FORGE_POOL_UNCOMMON, ITEM_ORB_MIRROR,        0,  1.06, 0, 1, 1, 1, 1, 'Mirror of Kalandra'),
     (LOOT_FORGE_POOL_UNCOMMON, ITEM_ORB_ANCIENT,       0,  1.06, 0, 1, 1, 1, 1, 'Ancient Orb'),
+    (LOOT_FORGE_POOL_UNCOMMON, ITEM_ORB_VAAL,           0,  8.50, 0, 1, 1, 1, 1, 'Vaal Orb'),
     (LOOT_FORGE_POOL_UNCOMMON, ITEM_ORB_AWAKENER,      0,  0.13, 0, 1, 1, 1, 1, 'Awakener''s Orb');
 
 -- =============================================================================
@@ -65,6 +67,7 @@ VALUES
     (LOOT_FORGE_POOL_RARE, ITEM_ORB_TRANSMOG,      0,  8.67, 0, 1, 1, 1, 1, 'Divine Orb'),
     (LOOT_FORGE_POOL_RARE, ITEM_ORB_MIRROR,        0,  2.17, 0, 1, 1, 1, 1, 'Mirror of Kalandra'),
     (LOOT_FORGE_POOL_RARE, ITEM_ORB_ANCIENT,       0,  2.17, 0, 1, 1, 1, 1, 'Ancient Orb'),
+    (LOOT_FORGE_POOL_RARE, ITEM_ORB_VAAL,           0, 17.34, 0, 1, 1, 1, 1, 'Vaal Orb'),
     (LOOT_FORGE_POOL_RARE, ITEM_ORB_AWAKENER,      0,  0.27, 0, 1, 1, 1, 1, 'Awakener''s Orb');
 
 -- =============================================================================

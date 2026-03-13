@@ -29,6 +29,11 @@ tokens:
   - ITEM_ORB_AWAKENER            # Awakener's Orb
   - ITEM_ORB_INFLUENCED          # Influenced Exalted Orb
   - ITEM_ORB_JEWELER             # Jeweler's Orb
+  - ITEM_ORB_VAAL                # Vaal Orb
+  - ITEM_ORB_CRATE               # Smithing Orb Crate (24-slot engineering bag)
+
+  # --- Bag display info ---
+  - DISPLAYINFO_ORB_CRATE
 
   # --- Original display info ---
   - DISPLAYINFO_ORB_ALTERATION
@@ -51,6 +56,7 @@ tokens:
   - DISPLAYINFO_ORB_AWAKENER
   - DISPLAYINFO_ORB_INFLUENCED
   - DISPLAYINFO_ORB_JEWELER
+  - DISPLAYINFO_ORB_VAAL
 
   # --- Original instant spells (item-targeting cursor) ---
   - SPELL_ORB_ALTERATION
@@ -73,6 +79,7 @@ tokens:
   - SPELL_ORB_AWAKENER
   - SPELL_ORB_INFLUENCED
   - SPELL_ORB_JEWELER
+  - SPELL_ORB_VAAL
 
   # --- Original 1.5s cast spells ---
   - SPELL_ORB_ALTERATION_CAST
@@ -95,6 +102,10 @@ tokens:
   - SPELL_ORB_AWAKENER_CAST
   - SPELL_ORB_INFLUENCED_CAST
   - SPELL_ORB_JEWELER_CAST
+  - SPELL_ORB_VAAL_CAST
+  - SPELL_VAAL_AURA              # "No Vaals" buff (present while Vaal Orbs in inventory)
+  - SPELL_VAAL_SUCCESS_AURA      # "Big Vaals" buff (30s, Vaal succeeded)
+  - SPELL_VAAL_FAIL_AURA         # "Poof!" debuff (30s, Vaal failed)
 
   # --- Influence enchantments (cosmetic tooltip text for Influenced Exalted Orb) ---
   - ENCHANTMENT_INFLUENCE_AGI

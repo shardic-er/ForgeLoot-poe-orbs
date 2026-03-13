@@ -97,7 +97,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_ALTERATION, 0, 0, -1,
     'Orb of Alteration', DISPLAYINFO_ORB_ALTERATION, 2, 0, 0,
@@ -105,7 +105,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_ALTERATION, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -194,7 +194,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_TRANSMUTATION, 0, 0, -1,
     'Orb of Transmutation', DISPLAYINFO_ORB_TRANSMUTATION, 1, 0, 0,
@@ -202,7 +202,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_TRANSMUTATION, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -291,7 +291,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_REGAL, 0, 0, -1,
     'Regal Orb', DISPLAYINFO_ORB_REGAL, 3, 0, 0,
@@ -299,7 +299,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_REGAL, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -388,7 +388,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_EXALTED, 0, 0, -1,
     'Exalted Orb', DISPLAYINFO_ORB_EXALTED, 4, 0, 0,
@@ -396,7 +396,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_EXALTED, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -485,7 +485,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_ALCHEMY, 0, 0, -1,
     'Orb of Alchemy', DISPLAYINFO_ORB_ALCHEMY, 3, 0, 0,
@@ -493,7 +493,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_ALCHEMY, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -582,7 +582,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_SCOURING, 0, 0, -1,
     'Orb of Annulment', DISPLAYINFO_ORB_SCOURING, 3, 0, 0,
@@ -590,7 +590,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_SCOURING, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -679,7 +679,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_CHAOS, 0, 0, -1,
     'Chaos Orb', DISPLAYINFO_ORB_CHAOS, 3, 0, 0,
@@ -687,7 +687,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_CHAOS, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -776,7 +776,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_DIVINE, 0, 0, -1,
     'Blessed Orb', DISPLAYINFO_ORB_DIVINE, 4, 0, 0,
@@ -784,7 +784,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_DIVINE, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -873,7 +873,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_FULLSCOUR, 0, 0, -1,
     'Orb of Scouring', DISPLAYINFO_ORB_FULLSCOUR, 1, 0, 0,
@@ -881,7 +881,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_FULLSCOUR, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -949,7 +949,7 @@ INSERT INTO spell_dbc (
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0,
-    16, 31, 0, 0,
+    3, 31, 0, 0,
     1, 0, -1, 0,
     0, 0,
     3, 0, 0,
@@ -970,7 +970,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_WHETSTONE, 0, 0, -1,
     'Blacksmith''s Whetstone', DISPLAYINFO_ORB_WHETSTONE, 2, 0, 0,
@@ -978,7 +978,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_WHETSTONE, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1046,7 +1046,7 @@ INSERT INTO spell_dbc (
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0,
-    16, 31, 0, 0,
+    3, 31, 0, 0,
     1, 0, -1, 0,
     0, 0,
     3, 0, 0,
@@ -1067,7 +1067,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_ARMORER, 0, 0, -1,
     'Armorer''s Scrap', DISPLAYINFO_ORB_ARMORER, 2, 0, 0,
@@ -1075,7 +1075,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_ARMORER, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1164,7 +1164,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_MIRROR, 0, 0, -1,
     'Mirror of Kalandra', DISPLAYINFO_ORB_MIRROR, 5, 0, 0,
@@ -1172,7 +1172,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_MIRROR, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1261,7 +1261,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_ANCIENT, 0, 0, -1,
     'Ancient Orb', DISPLAYINFO_ORB_ANCIENT, 4, 0, 0,
@@ -1269,7 +1269,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_ANCIENT, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1359,7 +1359,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_TRANSMOG, 0, 0, -1,
     'Divine Orb', DISPLAYINFO_ORB_TRANSMOG, 4, 0, 0,
@@ -1367,7 +1367,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_TRANSMOG, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1456,7 +1456,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_IDENTIFY, 0, 0, -1,
     'Scroll of Identification', DISPLAYINFO_ORB_IDENTIFY, 1, 0, 0,
@@ -1464,7 +1464,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_IDENTIFY, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1553,7 +1553,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_PORTAL_SCROLL, 0, 0, -1,
     'Portal Scroll', DISPLAYINFO_PORTAL_SCROLL, 1, 0, 0,
@@ -1561,7 +1561,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_PORTAL_SCROLL, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1651,7 +1651,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_AWAKENER, 0, 0, -1,
     'Awakener''s Orb', DISPLAYINFO_ORB_AWAKENER, 4, 0, 0,
@@ -1659,7 +1659,7 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_AWAKENER, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1748,7 +1748,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_INFLUENCED, 0, 0, -1,
     'Influenced Exalted Orb', DISPLAYINFO_ORB_INFLUENCED, 4, 0, 0,
@@ -1756,7 +1756,7 @@ INSERT INTO item_template (
     1, 0, 1, 0,
     SPELL_ORB_INFLUENCED, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
 );
 
 -- *****************************************************************************
@@ -1845,7 +1845,7 @@ INSERT INTO item_template (
     ItemLevel, RequiredLevel, stackable, maxcount,
     spellid_1, spelltrigger_1, spellcharges_1,
     spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
-    bonding, BuyPrice, SellPrice, Material
+    bonding, BuyPrice, SellPrice, Material, BagFamily
 ) VALUES (
     ITEM_ORB_JEWELER, 0, 0, -1,
     'Jeweler''s Orb', DISPLAYINFO_ORB_JEWELER, 2, 0, 0,
@@ -1853,7 +1853,234 @@ INSERT INTO item_template (
     1, 0, 200, 0,
     SPELL_ORB_JEWELER, 0, -1,
     0, 0, 0,
-    0, 0, 0, -1
+    0, 0, 0, -1, 128
+);
+
+-- *****************************************************************************
+-- Vaal Orb (Rare)
+-- Corrupts an item. Currently returns item unmodified (stub).
+-- *****************************************************************************
+
+INSERT INTO spell_dbc (
+    Id, SpellName, Description, SchoolMask,
+    Attributes, AttributesEx, AttributesEx2, AttributesEx3,
+    AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7,
+    Stances, StancesNot, Targets,
+    CastingTimeIndex, RecoveryTime, CategoryRecoveryTime,
+    RangeIndex, DurationIndex, PowerType, ManaCost,
+    Mechanic, Dispel,
+    Effect1, Effect2, Effect3,
+    EffectApplyAuraName1, EffectApplyAuraName2, EffectApplyAuraName3,
+    EffectBasePoints1, EffectBasePoints2, EffectBasePoints3,
+    EffectDieSides1, EffectDieSides2, EffectDieSides3,
+    EffectImplicitTargetA1, EffectImplicitTargetA2, EffectImplicitTargetA3,
+    EffectImplicitTargetB1, EffectImplicitTargetB2, EffectImplicitTargetB3,
+    EffectMiscValue1, EffectMiscValue2, EffectMiscValue3,
+    EquippedItemClass,
+    SpellIconID
+) VALUES (
+    SPELL_ORB_VAAL, 'Vaal Orb',
+    'Corrupt a forge item, unpredictably transforming it.', 1,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 16,
+    1, 0, 0,
+    1, 0, -1, 0,
+    0, 0,
+    3, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    -1,
+    1973
+);
+
+INSERT INTO spell_dbc (
+    Id, SpellName, Description, SchoolMask,
+    Attributes, AttributesEx, AttributesEx2, AttributesEx3,
+    AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7,
+    Stances, StancesNot, Targets,
+    CastingTimeIndex, InterruptFlags, RecoveryTime, CategoryRecoveryTime,
+    RangeIndex, DurationIndex, PowerType, ManaCost,
+    Mechanic, Dispel,
+    Effect1, Effect2, Effect3,
+    EffectApplyAuraName1, EffectApplyAuraName2, EffectApplyAuraName3,
+    EffectBasePoints1, EffectBasePoints2, EffectBasePoints3,
+    EffectDieSides1, EffectDieSides2, EffectDieSides3,
+    EffectImplicitTargetA1, EffectImplicitTargetA2, EffectImplicitTargetA3,
+    EffectImplicitTargetB1, EffectImplicitTargetB2, EffectImplicitTargetB3,
+    EffectMiscValue1, EffectMiscValue2, EffectMiscValue3,
+    EquippedItemClass,
+    SpellIconID
+) VALUES (
+    SPELL_ORB_VAAL_CAST, 'Vaal Orb',
+    'Corrupting...', 1,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0,
+    16, 31, 0, 0,
+    1, 0, -1, 0,
+    0, 0,
+    3, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    -1,
+    1973
+);
+
+INSERT INTO item_template (
+    entry, class, subclass, SoundOverrideSubclass,
+    name, displayid, Quality, Flags, InventoryType,
+    AllowableClass, AllowableRace,
+    ItemLevel, RequiredLevel, stackable, maxcount,
+    spellid_1, spelltrigger_1, spellcharges_1,
+    spellcooldown_1, spellcategory_1, spellcategorycooldown_1,
+    bonding, BuyPrice, SellPrice, Material, BagFamily
+) VALUES (
+    ITEM_ORB_VAAL, 0, 0, -1,
+    'Vaal Orb', DISPLAYINFO_ORB_VAAL, 3, 0, 0,
+    -1, -1,
+    1, 0, 200, 0,
+    SPELL_ORB_VAAL, 0, -1,
+    0, 0, 0,
+    0, 0, 0, -1, 128
+);
+
+-- *****************************************************************************
+-- "No Vaals" aura (permanent buff, applied via AddAura when player has Vaal Orbs)
+-- Effect1=APPLY_AURA(6), Aura=DUMMY(4), DurationIndex=21 (permanent)
+-- SpellIconID=3199 (Spell_Misc_EmotionAfraid)
+-- *****************************************************************************
+
+INSERT INTO spell_dbc (
+    Id, SpellName, Description, AuraDescription, SchoolMask,
+    Attributes, AttributesEx, AttributesEx2, AttributesEx3,
+    AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7,
+    Stances, StancesNot, Targets,
+    CastingTimeIndex, RecoveryTime, CategoryRecoveryTime,
+    RangeIndex, DurationIndex, PowerType, ManaCost,
+    Mechanic, Dispel,
+    Effect1, Effect2, Effect3,
+    EffectApplyAuraName1, EffectApplyAuraName2, EffectApplyAuraName3,
+    EffectBasePoints1, EffectBasePoints2, EffectBasePoints3,
+    EffectDieSides1, EffectDieSides2, EffectDieSides3,
+    EffectImplicitTargetA1, EffectImplicitTargetA2, EffectImplicitTargetA3,
+    EffectImplicitTargetB1, EffectImplicitTargetB2, EffectImplicitTargetB3,
+    EffectMiscValue1, EffectMiscValue2, EffectMiscValue3,
+    EquippedItemClass,
+    SpellIconID
+) VALUES (
+    SPELL_VAAL_AURA, 'No Vaals',
+    'Use it. Ruin something. Feel alive.',
+    'Use it. Ruin something. Feel alive.', 1,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    1, 21, -1, 0,
+    0, 0,
+    6, 0, 0,
+    4, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    -1,
+    3199
+);
+
+-- *****************************************************************************
+-- "Big Vaals" aura (1hr buff, applied when Vaal Orb succeeds)
+-- SpellIconID=3183 (Spell_Misc_EmotionHappy), DurationIndex=42 (60min)
+-- *****************************************************************************
+
+INSERT INTO spell_dbc (
+    Id, SpellName, Description, AuraDescription, SchoolMask,
+    Attributes, AttributesEx, AttributesEx2, AttributesEx3,
+    AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7,
+    Stances, StancesNot, Targets,
+    CastingTimeIndex, RecoveryTime, CategoryRecoveryTime,
+    RangeIndex, DurationIndex, PowerType, ManaCost,
+    Mechanic, Dispel,
+    Effect1, Effect2, Effect3,
+    EffectApplyAuraName1, EffectApplyAuraName2, EffectApplyAuraName3,
+    EffectBasePoints1, EffectBasePoints2, EffectBasePoints3,
+    EffectDieSides1, EffectDieSides2, EffectDieSides3,
+    EffectImplicitTargetA1, EffectImplicitTargetA2, EffectImplicitTargetA3,
+    EffectImplicitTargetB1, EffectImplicitTargetB2, EffectImplicitTargetB3,
+    EffectMiscValue1, EffectMiscValue2, EffectMiscValue3,
+    EquippedItemClass,
+    SpellIconID
+) VALUES (
+    SPELL_VAAL_SUCCESS_AURA, 'Big Vaals',
+    'You absolute madman. It actually worked.',
+    'You absolute madman. It actually worked.', 1,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    1, 42, -1, 0,
+    0, 0,
+    6, 0, 0,
+    4, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    -1,
+    3183
+);
+
+-- *****************************************************************************
+-- "Poof!" aura (1hr debuff, applied when Vaal Orb fails)
+-- SpellIconID=3198 (Spell_Misc_EmotionAngry), DurationIndex=42 (60min)
+-- *****************************************************************************
+
+INSERT INTO spell_dbc (
+    Id, SpellName, Description, AuraDescription, SchoolMask,
+    Attributes, AttributesEx, AttributesEx2, AttributesEx3,
+    AttributesEx4, AttributesEx5, AttributesEx6, AttributesEx7,
+    Stances, StancesNot, Targets,
+    CastingTimeIndex, RecoveryTime, CategoryRecoveryTime,
+    RangeIndex, DurationIndex, PowerType, ManaCost,
+    Mechanic, Dispel,
+    Effect1, Effect2, Effect3,
+    EffectApplyAuraName1, EffectApplyAuraName2, EffectApplyAuraName3,
+    EffectBasePoints1, EffectBasePoints2, EffectBasePoints3,
+    EffectDieSides1, EffectDieSides2, EffectDieSides3,
+    EffectImplicitTargetA1, EffectImplicitTargetA2, EffectImplicitTargetA3,
+    EffectImplicitTargetB1, EffectImplicitTargetB2, EffectImplicitTargetB3,
+    EffectMiscValue1, EffectMiscValue2, EffectMiscValue3,
+    EquippedItemClass,
+    SpellIconID
+) VALUES (
+    SPELL_VAAL_FAIL_AURA, 'Poof!',
+    'You did this to yourself.',
+    'You did this to yourself.', 1,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    1, 42, -1, 0,
+    0, 0,
+    6, 0, 0,
+    4, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    1, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    -1,
+    3198
 );
 
 -- *****************************************************************************
@@ -1905,3 +2132,26 @@ INSERT INTO spellitemenchantment (
  'Influence: Spell Power', 0, 0, 0, 0, 0, 0, 0),
 (ENCHANTMENT_INFLUENCE_BLOCK_VAL, 0, 0,0,0, 0,0,0, 0,0,0, 0,0,0,
  'Influence: Block Value', 0, 0, 0, 0, 0, 0, 0);
+
+-- *****************************************************************************
+-- Smithing Orb Crate (24-slot engineering bag for orbs)
+-- Given to all characters at creation. Only holds items with BagFamily=128.
+-- *****************************************************************************
+
+INSERT INTO item_template (
+    entry, class, subclass, SoundOverrideSubclass,
+    name, displayid, Quality, Flags, InventoryType,
+    AllowableClass, AllowableRace,
+    ItemLevel, RequiredLevel, ContainerSlots,
+    bonding, BuyPrice, SellPrice, Material
+) VALUES (
+    ITEM_ORB_CRATE, 1, 4, -1,
+    'Smithing Orb Crate', DISPLAYINFO_ORB_CRATE, 1, 0, 18,
+    -1, -1,
+    1, 0, 24,
+    1, 0, 0, -1
+);
+
+-- Give Smithing Orb Crate to all new characters (race=0, class=0 = all)
+INSERT INTO playercreateinfo_item (race, class, itemid, amount) VALUES
+(0, 0, ITEM_ORB_CRATE, 1);
