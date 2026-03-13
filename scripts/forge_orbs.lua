@@ -1,4 +1,4 @@
-haos orb-- @load-order 20
+-- @load-order 20
 -- ForgeLoot PoE Orbs: Currency crafting system
 -- Depends on: forge_balance.lua, forge_commands.lua, forge_names.lua (from forge-loot)
 --
