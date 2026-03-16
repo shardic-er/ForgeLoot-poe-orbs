@@ -185,9 +185,9 @@ def png_to_blp(png_path, blp_path, target_size=64):
     if img.size != (target_size, target_size):
         img = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
 
-    # Composite onto black background -- WoW icons use opaque black, not alpha
-    background = Image.new('RGBA', img.size, (0, 0, 0, 255))
-    img = Image.alpha_composite(background, img)
+    # # Composite onto black background -- WoW icons use opaque black, not alpha
+    # background = Image.new('RGBA', img.size, (0, 0, 0, 255))
+    # img = Image.alpha_composite(background, img)
 
     # Generate mipmap chain
     mipmaps = _generate_mipmaps(img)
