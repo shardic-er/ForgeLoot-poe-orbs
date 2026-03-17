@@ -568,10 +568,12 @@ local function recreateItem(player, oldEntry, state)
         newEntry
     ))
 
-    -- Read enchantments and gems from the OLD item before destroying it
+    -- Read enchantments, gems, and bag position from the OLD item before destroying it
     local oldItem = player:GetItemByEntry(oldEntry)
     local oldEnchantId = 0
     local oldGems = {}
+    local oldBag = nil
+    local oldSlot = nil
     if oldItem then
         oldEnchantId = oldItem:GetEnchantmentId(0) or 0
         for i = 0, 2 do
@@ -580,6 +582,8 @@ local function recreateItem(player, oldEntry, state)
                 oldGems[i] = gemEnch
             end
         end
+        oldBag = oldItem:GetBagSlot()
+        oldSlot = oldItem:GetSlot()
     end
 
     -- Remove old item, destroy old template
@@ -600,6 +604,15 @@ local function recreateItem(player, oldEntry, state)
     end
     for i, gemEnch in pairs(oldGems) do
         item:SetEnchantment(gemEnch, i + 2)
+    end
+
+    -- Move new item back to the old bag position
+    if oldBag and oldSlot then
+        local newBag = item:GetBagSlot()
+        local newSlot = item:GetSlot()
+        if newBag ~= oldBag or newSlot ~= oldSlot then
+            ForgeSwapItems(player, newBag, newSlot, oldBag, oldSlot)
+        end
     end
 
     -- Refresh client cache
