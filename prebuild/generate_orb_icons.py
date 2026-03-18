@@ -53,6 +53,7 @@ ORB_ICONS = {
     'Portal_Scroll.png':          'INV_Orb_Portal',
     "Jeweller's_Orb.png":         'INV_Orb_Jeweler',
     'Vaal_Orb.png':               'INV_Orb_Vaal',
+    'Transmutation_Shard.png':    'Transmutation_Shard',
 }
 
 

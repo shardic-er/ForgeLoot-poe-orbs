@@ -33,6 +33,11 @@ local function OnLogin(event, player)
         player:LearnSpell(ORB_RECIPES_BASE_SPELL)
     end
 
+    -- Teach Shatter (disenchant forge items into orbs)
+    if not player:HasSpell(SPELL_SHATTER) then
+        player:LearnSpell(SPELL_SHATTER)
+    end
+
     -- Restore skill: custom skilllines get clamped on load, so re-set max.
     local q = CharDBQuery(
         "SELECT skill_value FROM " .. SKILL_TABLE
