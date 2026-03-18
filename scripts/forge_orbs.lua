@@ -359,7 +359,7 @@ local function readForgeItemState(entry)
         "item_class, item_subclass, inv_type, name, attack_speed, " ..
         "display_info_id, display_source_entry, dmg_min, dmg_max, " ..
         "armor, block, socket_count, item_level_override, " ..
-        "name_override " ..
+        "name_override, COALESCE(base_ilvl_bonus, 0) " ..
         "FROM virtual_item_instance WHERE entry = %d", entry
     ))
     if not q then return nil end
@@ -392,6 +392,7 @@ local function readForgeItemState(entry)
         socket_count = q:GetUInt32(23),
         item_level_override = nullUInt(q, 24),
         name_override = nullStr(q, 25),
+        base_ilvl_bonus = q:GetUInt32(26),
     }
 end
 
@@ -420,8 +421,9 @@ local function recreateItem(player, oldEntry, state)
         wtype = FORGE.WEAPON_TYPES[state.weapon_type]
     end
 
-    -- Recalculate item level (item_level_override is a bonus from whetstone/armorer)
-    local ilvlBonus = state.item_level_override or 0
+    -- Recalculate item level (base_ilvl_bonus from quality base + item_level_override from whetstone/armorer)
+    local baseBonus = state.base_ilvl_bonus or 0
+    local ilvlBonus = baseBonus + (state.item_level_override or 0)
     local itemLevel = FORGE.computeItemLevel(level, quality) + ilvlBonus
     local persistedIlvlOverride = state.item_level_override
 
@@ -519,6 +521,7 @@ local function recreateItem(player, oldEntry, state)
     local displaySourceEntry = state.display_source_entry
 
     -- Create new forge item
+    local itemFlags = baseBonus > 0 and 0x8 or 0  -- HEROIC_TOOLTIP for quality bases
     local newEntry = CreateForgeItem({
         itemClass = state.item_class,
         itemSubClass = state.item_subclass,
@@ -536,6 +539,7 @@ local function recreateItem(player, oldEntry, state)
         armor = armorValue,
         block = blockValue,
         socketCount = state.socket_count,
+        flags = itemFlags,
         stats = statArray,
     })
 
@@ -551,7 +555,8 @@ local function recreateItem(player, oldEntry, state)
         "suffix1_name=%s, suffix2_name=%s, " ..
         "prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
         "prefix3_stat_id=%s, prefix3_word=%s, " ..
-        "item_level_override=%s, name_override=%s, mob_level=%d " ..
+        "item_level_override=%s, base_ilvl_bonus=%s, " ..
+        "name_override=%s, mob_level=%d " ..
         "WHERE entry=%d",
         state.weapon_type and ("'" .. state.weapon_type .. "'") or "NULL",
         state.slot_name and ("'" .. state.slot_name .. "'") or "NULL",
@@ -563,6 +568,7 @@ local function recreateItem(player, oldEntry, state)
         state.prefix3_stat_id and tostring(state.prefix3_stat_id) or "NULL",
         state.prefix3_word and ("'" .. state.prefix3_word:gsub("'", "''") .. "'") or "NULL",
         persistedIlvlOverride and tostring(persistedIlvlOverride) or "NULL",
+        baseBonus > 0 and tostring(baseBonus) or "NULL",
         state.name_override and ("'" .. state.name_override:gsub("'", "''") .. "'") or "NULL",
         level,
         newEntry
@@ -808,6 +814,7 @@ local function applyMirror(player, state)
         armor = state.armor_value,
         block = state.block_value,
         socketCount = state.socket_count,
+        flags = (state.base_ilvl_bonus and state.base_ilvl_bonus > 0) and 0x8 or 0,
         stats = statArray,
     })
 
@@ -823,7 +830,8 @@ local function applyMirror(player, state)
         "suffix1_name=%s, suffix2_name=%s, " ..
         "prefix1_stat_id=%s, prefix2_stat_id=%s, " ..
         "prefix3_stat_id=%s, prefix3_word='%s', " ..
-        "item_level_override=%s, name_override=%s, mob_level=%d " ..
+        "item_level_override=%s, base_ilvl_bonus=%s, " ..
+        "name_override=%s, mob_level=%d " ..
         "WHERE entry=%d",
         state.weapon_type and ("'" .. state.weapon_type .. "'") or "NULL",
         state.slot_name and ("'" .. state.slot_name .. "'") or "NULL",
@@ -835,6 +843,7 @@ local function applyMirror(player, state)
         state.prefix3_stat_id and tostring(state.prefix3_stat_id) or "NULL",
         mirrorPrefix:gsub("'", "''"),
         state.item_level_override and tostring(state.item_level_override) or "NULL",
+        (state.base_ilvl_bonus and state.base_ilvl_bonus > 0) and tostring(state.base_ilvl_bonus) or "NULL",
         state.name_override and ("'" .. state.name_override:gsub("'", "''") .. "'") or "NULL",
         state.mob_level,
         newEntry
