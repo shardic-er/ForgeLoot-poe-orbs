@@ -400,8 +400,8 @@ INSERT INTO item_template (
 );
 
 -- *****************************************************************************
--- Orb of Alchemy (Rare item, creates Epic result)
--- Common->Epic (add suffix + both prefixes).
+-- Orb of Alchemy (Rare item, creates Rare result)
+-- Common->Rare (add suffix + prefix1).
 -- *****************************************************************************
 
 INSERT INTO spell_dbc (
@@ -423,7 +423,7 @@ INSERT INTO spell_dbc (
     SpellIconID
 ) VALUES (
     SPELL_ORB_ALCHEMY, 'Orb of Alchemy',
-    'Transform a common forge item into a fully-crafted epic.', 1,
+    'Transform a common forge item into a rare.', 1,
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 16,

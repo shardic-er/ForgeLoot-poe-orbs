@@ -658,16 +658,15 @@ local function applyExalted(player, state)
     return recreateItem(player, state.entry, state)
 end
 
--- Alchemy: common->epic (add suffix + both prefixes)
+-- Alchemy: common->rare (add suffix + prefix1)
 local function applyAlchemy(player, state)
-    state.quality = 4
-    local suffixName, _ = FORGE.rollSuffix(4, state.slot_name, state.armor_class, state.weapon_type)
+    state.quality = 3
+    local suffixName, _ = FORGE.rollSuffix(3, state.slot_name, state.armor_class, state.weapon_type)
     state.suffix1_name = suffixName
     state.suffix2_name = nil
     local p1stat, _ = FORGE.rollPrefix(FORGE.PREFIX1_TABLE)
     state.prefix1_stat_id = p1stat
-    local p2stat, _ = FORGE.rollPrefix(FORGE.PREFIX2_TABLE)
-    state.prefix2_stat_id = p2stat
+    state.prefix2_stat_id = nil
     return recreateItem(player, state.entry, state)
 end
 
@@ -710,11 +709,11 @@ local function applyChaos(player, state)
         local p2stat, _ = FORGE.rollPrefix(FORGE.PREFIX2_TABLE)
         state.prefix2_stat_id = p2stat
     end
-    -- Double suffix: 20% for epic, 10% for rare
+    -- Double suffix: 30% for epic, 15% for rare
     -- Dual suffix trades the highest prefix for a second suffix:
     --   Epic: loses prefix2, keeps prefix1 -> 1p/2s epic (exaltable)
     --   Rare: loses prefix1 -> 0p/2s uncommon (regal -> exalt path)
-    local dualChance = (quality >= 4 and 20) or (quality >= 3 and 10) or 0
+    local dualChance = (quality >= 4 and 30) or (quality >= 3 and 15) or 0
     if dualChance > 0 and math.random(100) <= dualChance then
         local s2, _ = FORGE.rollSuffix(quality, state.slot_name, state.armor_class, state.weapon_type)
         state.suffix2_name = s2
@@ -727,6 +726,26 @@ local function applyChaos(player, state)
     else
         state.suffix2_name = nil
     end
+
+    -- Re-roll appearance from the same display pool
+    if state.weapon_type then
+        local wtype = FORGE.WEAPON_TYPES[state.weapon_type]
+        if wtype then
+            local newEntry, newDisplay = FORGE.pickDisplay("weapon", wtype.displayIdx, quality, state.mob_level or 80)
+            state.display_source_entry = newEntry
+            state.display_info_id = newDisplay
+        end
+    elseif state.slot_name then
+        for _, def in ipairs(FORGE.ARMOR_SLOTS) do
+            if def.slot == state.slot_name and (def.armorClass == state.armor_class or (not def.armorClass and not state.armor_class)) then
+                local newEntry, newDisplay = FORGE.pickDisplay("armor", def.displayIdx, quality, state.mob_level or 80)
+                state.display_source_entry = newEntry
+                state.display_info_id = newDisplay
+                break
+            end
+        end
+    end
+
     return recreateItem(player, state.entry, state)
 end
 
